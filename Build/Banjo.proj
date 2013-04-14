@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project
+	xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+	ToolsVersion="4.0"
+	DefaultTargets="Build">
+
+	<PropertyGroup>
+		<BuildNumber>$(BUILD_NUMBER)</BuildNumber>
+		<BranchName>$(TEAMCITY_BUILD_BRANCH)</BranchName>
+		<RootDir>..\Source\</RootDir>
+		<SolutionFile>$(RootDir)Banjo.sln</SolutionFile>
+		<EnableIncrementalBuild>True</EnableIncrementalBuild>
+	</PropertyGroup>
+
+	<!-- Use the following properties to control NuGet Package generation. -->
+	<!--<PropertyGroup>
+		<PackSymbols>False</PackSymbols>
+		<NuGetToolsPath>$(MSBuildThisFileDirectory)</NuGetToolsPath>
+		<NuGetExePath>$(NuGetToolsPath)nuget.exe</NuGetExePath>
+		<NuGetCommand>"$(NuGetExePath)"</NuGetCommand>
+	</PropertyGroup>-->
+
+	<!-- Use the following properties to control NUnit testing. -->
+	<!--<PropertyGroup>
+		<NUnitToolPath>$(MSBuildProgramFiles32)\NUnit 2.5.9\bin\net-2.0\</NUnitToolPath>
+		<NUnitResultsDir>$(MSBuildProjectDirectory)\TestResults\</NUnitResultsDir>
+	</PropertyGroup>-->
+
+	<!-- **** The Projects for NuGet to package **** -->
+	<ItemGroup>
+		<LibraryProject Include="Banjo">
+			<BaseDir>$(RootDir)\Microsoft Service Bus Config\</BaseDir>
+			<NuSpecFile>Microsoft Service Bus Config.nuspec</NuSpecFile>
+			<MetadataAssemblyFile>bin\Release\PyPup.MicrosoftServiceBus.Configuration.dll</MetadataAssemblyFile>
+		</LibraryProject>
+	</ItemGroup>
+
+	<!-- **** The NUnit projects for unit testing. **** -->
+	<!--By default the build searches for all DLLs beneath the 'RootDir' ending *.Tests.dll and assumes they are NUnit tests.-->
+	<!--Uncomment to specify files manually.-->
+	<!--<ItemGroup>
+		<TestAssembly Include="MyProject.Tests\bin\Release\MyProject.Tests.dll">
+			<FrameworkVersion>net-4.0</FrameworkVersion>
+		</TestAssembly>
+	</ItemGroup>-->
+
+	<Import Project="Solution.Common.targets"/>
+
+</Project>

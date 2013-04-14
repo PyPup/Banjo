@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+		<PrepareForBuildDependsOn>
+			$(PrepareForBuildDependsOn);
+			_SetTargetFrameworkMonikerAssemblyAttributesPath
+		</PrepareForBuildDependsOn>
+	</PropertyGroup>
+	
+	<Target 
+		Name="_SetTargetFrameworkMonikerAssemblyAttributesPath"
+		Condition="'$(TEAMCITY_VERSION)' != ''">
+		
+		<PropertyGroup>
+			<TargetFrameworkMonikerAssemblyAttributesDir Condition="'$(TargetFrameworkMonikerAssemblyAttributesDir)' == ''">$([MSBuild]::GetRegistryValue("HKEY_CURRENT_USER\Environment", "TMP"))</TargetFrameworkMonikerAssemblyAttributesDir>
+			<TargetFrameworkMonikerAssemblyAttributesDir Condition="'$(TargetFrameworkMonikerAssemblyAttributesDir)' == ''">$([MSBuild]::GetRegistryValue("HKEY_CURRENT_USER\Environment", "TEMP"))</TargetFrameworkMonikerAssemblyAttributesDir>
+			<TargetFrameworkMonikerAssemblyAttributesDir Condition="'$(TargetFrameworkMonikerAssemblyAttributesDir)' == ''">$(USERPROFILE)</TargetFrameworkMonikerAssemblyAttributesDir>
+			<TargetFrameworkMonikerAssemblyAttributesDir Condition="'$(TargetFrameworkMonikerAssemblyAttributesDir)' == ''">$([System.IO.Path]::Combine('$(WINDIR)', 'Temp'))</TargetFrameworkMonikerAssemblyAttributesDir>
+			<TargetFrameworkMonikerAssemblyAttributesPath>$([System.IO.Path]::Combine('$(TargetFrameworkMonikerAssemblyAttributesDir)','$(TargetFrameworkMoniker).AssemblyAttributes$(DefaultLanguageSourceExtension)'))</TargetFrameworkMonikerAssemblyAttributesPath>
+		</PropertyGroup>
+
+		<Message Text="Target Framework Moniker Assembly Attributes path is &quot;$(TargetFrameworkMonikerAssemblyAttributesPath)&quot;" Importance="low" />
+		
+	</Target>
+	
+</Project>

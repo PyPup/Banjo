@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+		<CoreCompileDependsOn>$(CoreCompileDependsOn);UpdateAssemblyVersions</CoreCompileDependsOn>
+		<AssemblyInfoFile>Properties\AssemblyInfo.cs</AssemblyInfoFile>
+	</PropertyGroup>
+
+	<Import Project="$(MSBuildExtensionsPath)\ExtensionPack\4.0\MSBuild.ExtensionPack.tasks"/>
+
+	<Target
+		Name="UpdateAssemblyVersions"
+		Inputs="$(MSBuildAllProjects);
+						@(Compile);
+						@(_CoreCompileResourceInputs);
+						$(ApplicationIcon);
+						$(AssemblyOriginatorKeyFile);
+						@(ReferencePath);
+						@(CompiledLicenseFile);
+						@(EmbeddedDocumentation);
+						$(Win32Resource);
+						$(Win32Manifest);
+						@(CustomAdditionalCompileInputs)"
+		Outputs="$(IntermediateOutputPath)AssemblyInfo.cs"
+		Condition="'$(BuildNumber)' != '' OR '$(RevisionNumber)' != '' OR '$(InformationalVersion)' != ''">
+
+		<!-- Copy the assembly info file to a temporary location. -->
+		<Copy SourceFiles="$(AssemblyInfoFile)" DestinationFolder="$(IntermediateOutputPath)" />
+
+		<!-- Update the file version to contain the correct build and revision numbers. -->
+		<Message Text="Build Number: &quot;$(BuildNumber)&quot;" Importance="low" />
+		<Message Text="Revision Number: &quot;$(RevisionNumber)&quot;" Importance="low" />
+
+		<MSBuild.ExtensionPack.FileSystem.File
+			Condition="'$(BuildNumber)' != ''"
+			TaskAction="Replace"
+			RegexPattern="(?&lt;=AssemblyFileVersion\(&quot;\d+\.\d+\.)\d+(?=\.\d+&quot;\))"
+			Replacement="$(BuildNumber)"
+			Files="$(IntermediateOutputPath)AssemblyInfo.cs"/>
+
+		<MSBuild.ExtensionPack.FileSystem.File
+			Condition="'$(RevisionNumber)' != ''"
+			TaskAction="Replace"
+			RegexPattern="(?&lt;=AssemblyFileVersion\(&quot;\d+\.\d+\.\d+\.)\d+(?=&quot;\))"
+			Replacement="$(RevisionNumber)"
+			Files="$(IntermediateOutputPath)AssemblyInfo.cs"/>
+
+		<!-- Update the informational version to the value specified. -->
+		<Message Text="Informational Version: &quot;$(InformationalVersion)&quot;" Importance="low" />
+
+		<MSBuild.ExtensionPack.FileSystem.File
+			Condition="'$(InformationalVersion)' != ''"
+			TaskAction="Replace"
+			RegexPattern="(?&lt;=AssemblyInformationalVersion\(&quot;).*(?=&quot;\))"
+			Replacement="$(InformationalVersion)"
+			Files="$(IntermediateOutputPath)AssemblyInfo.cs"/>
+
+		<ItemGroup>
+			<Compile Remove="$(AssemblyInfoFile)" />
+			<Compile Include="$(IntermediateOutputPath)AssemblyInfo.cs" />
+		</ItemGroup>
+
+	</Target>
+
+</Project>
