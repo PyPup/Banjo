@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Company.MicrosoftServiceBus.Setup.Configuration
+﻿namespace Company.MicrosoftServiceBus.Setup.Configuration
 {
+	using System.Configuration;
+
 	public class QueueConfigurationElement : ConfigurationElement
 	{
-		private static class PropertyNames
-		{
-			public const string Path = "path";
-		}
-
 		[ConfigurationProperty(PropertyNames.Path, IsKey = true, IsRequired = true)]
 		public string Path
 		{
@@ -26,6 +16,11 @@ namespace Company.MicrosoftServiceBus.Setup.Configuration
 			{
 				this[PropertyNames.Path] = value;
 			}
+		}
+
+		private static class PropertyNames
+		{
+			public const string Path = "path";
 		}
 	}
 }

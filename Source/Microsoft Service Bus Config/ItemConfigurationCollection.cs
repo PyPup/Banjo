@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Company.MicrosoftServiceBus.Setup
+﻿namespace Company.MicrosoftServiceBus.Setup
 {
+	using System;
+	using System.Collections.Generic;
+
 	/// <summary>
 	/// Provides the base collection for types of item configuration.
 	/// </summary>
 	/// <typeparam name="TItemConfiguration">The type of configuration contained in the collection.</typeparam>
 	public abstract class ItemConfigurationCollection<TItemConfiguration> : ICollection<TItemConfiguration>
-		where TItemConfiguration: ItemConfiguration
+		where TItemConfiguration : ItemConfiguration
 	{
 		/// <summary>
-		/// Initialises a new instance of the <see cref="ItemConfigurationCollection{TItemConfiguration}"/> class.
+		/// Initializes a new instance of the <see cref="ItemConfigurationCollection{TItemConfiguration}"/> class.
 		/// </summary>
 		protected ItemConfigurationCollection()
 		{

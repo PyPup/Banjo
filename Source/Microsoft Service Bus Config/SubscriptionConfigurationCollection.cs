@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Practices.TransientFaultHandling;
-using Microsoft.ServiceBus;
-using Microsoft.ServiceBus.Messaging;
-
-namespace Company.MicrosoftServiceBus.Setup
+﻿namespace Company.MicrosoftServiceBus.Setup
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Diagnostics;
+	using System.Linq;
+	using System.Threading.Tasks;
+	using Microsoft.Practices.TransientFaultHandling;
+	using Microsoft.ServiceBus;
+
 	public class SubscriptionConfigurationCollection : ItemConfigurationCollection<SubscriptionConfiguration>
 	{
 		private TraceSource traceSource;
@@ -19,6 +17,8 @@ namespace Company.MicrosoftServiceBus.Setup
 			this.traceSource = new TraceSource(ServiceBusConfiguration.TraceSourceName);
 		}
 
+		public bool RemoveSubscriptionsNotInConfiguration { get; set; }
+
 		internal bool RequiresSubscriptionClient
 		{
 			get
@@ -26,8 +26,6 @@ namespace Company.MicrosoftServiceBus.Setup
 				return this.Any(sub => sub.Rules.Any());
 			}
 		}
-
-		public bool RemoveSubscriptionsNotInConfiguration { get; set; }
 
 		internal Task ApplyToAsync(
 			NamespaceManager namespaceManager,
@@ -44,14 +42,14 @@ namespace Company.MicrosoftServiceBus.Setup
 
 			var tasks = new List<Task>();
 
-			foreach (var config in this.Where(item => item.CreateMode == ItemCreateMode.CreateOrUpdate))
+			foreach (var config in this.Where(item => item.CreateMode == ItemCreateMode.CreateIfNotExists))
 			{
 				tasks.Add(
 					retryPolicy.ExecuteAsync(
 						() => this.CreateOrUpdateSubscriptionAsync(namespaceManager, config)));
 			}
 
-			tasks.Add(DeleteSubscriptions(namespaceManager));
+			tasks.Add(this.DeleteSubscriptions(namespaceManager));
 
 			// Wait for all the tasks to complete.
 			return Task.WhenAll(tasks);

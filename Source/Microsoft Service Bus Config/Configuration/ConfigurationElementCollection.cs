@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Company.MicrosoftServiceBus.Setup.Configuration
+﻿namespace Company.MicrosoftServiceBus.Setup.Configuration
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Configuration;
+	using System.Linq;
+
 	public abstract class ConfigurationElementCollection<TKey, TConfigurationElement>
 		: ConfigurationElementCollection, IEnumerable<TConfigurationElement>
 		where TConfigurationElement : ConfigurationElement
 	{
+		public new IEnumerator<TConfigurationElement> GetEnumerator()
+		{
+			return this.Cast<TConfigurationElement>().GetEnumerator();
+		}
+
 		protected abstract TConfigurationElement CreateNewConfigurationElement();
 
 		protected abstract TKey GetConfigurationElementKey(TConfigurationElement element);
@@ -28,11 +31,6 @@ namespace Company.MicrosoftServiceBus.Setup.Configuration
 			}
 
 			return this.GetConfigurationElementKey((TConfigurationElement)element);
-		}
-
-		public new IEnumerator<TConfigurationElement> GetEnumerator()
-		{
-			return this.Cast<TConfigurationElement>().GetEnumerator();
 		}
 	}
 }

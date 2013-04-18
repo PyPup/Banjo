@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.ServiceBus.Messaging;
-
-namespace Company.MicrosoftServiceBus.Setup
+﻿namespace Company.MicrosoftServiceBus.Setup
 {
+	using Microsoft.ServiceBus.Messaging;
+
 	public class TopicConfiguration : ItemConfiguration
 	{
 		public TopicDescription Description { get; set; }

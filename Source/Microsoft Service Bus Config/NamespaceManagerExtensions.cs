@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Practices.TransientFaultHandling;
-using Microsoft.ServiceBus;
-using Microsoft.ServiceBus.Messaging;
-
-namespace Company.MicrosoftServiceBus.Setup
+﻿namespace Company.MicrosoftServiceBus.Setup
 {
+	using System.Collections.Generic;
+	using System.Threading.Tasks;
+	using Microsoft.ServiceBus;
+	using Microsoft.ServiceBus.Messaging;
+
 	internal static class NamespaceManagerExtensions
 	{
 		public static Task<bool> QueueExistsAsync(this NamespaceManager namespaceManager, string path)

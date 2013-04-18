@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Company.MicrosoftServiceBus.Setup.Configuration
+﻿namespace Company.MicrosoftServiceBus.Setup.Configuration
 {
+	using System;
+	using System.Configuration;
+
 	[ConfigurationCollection(typeof(QueueConfigurationElement), AddItemName = "queue")]
 	public class QueueConfigurationElementCollection : ConfigurationElementCollection<string, QueueConfigurationElement>
 	{

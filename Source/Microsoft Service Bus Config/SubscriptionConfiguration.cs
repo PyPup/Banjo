@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.ServiceBus.Messaging;
-
-namespace Company.MicrosoftServiceBus.Setup
+﻿namespace Company.MicrosoftServiceBus.Setup
 {
+	using System.Collections.Generic;
+	using Microsoft.ServiceBus.Messaging;
+
 	public class SubscriptionConfiguration : ItemConfiguration
 	{
 		public SubscriptionDescription Description { get; set; }

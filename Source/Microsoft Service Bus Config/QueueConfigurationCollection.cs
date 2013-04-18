@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Practices.TransientFaultHandling;
-using Microsoft.ServiceBus;
-using Microsoft.ServiceBus.Messaging;
-
-namespace Company.MicrosoftServiceBus.Setup
+﻿namespace Company.MicrosoftServiceBus.Setup
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Diagnostics;
+	using System.Linq;
+	using System.Threading.Tasks;
+	using Microsoft.Practices.TransientFaultHandling;
+	using Microsoft.ServiceBus;
+	using Microsoft.ServiceBus.Messaging;
+
 	public class QueueConfigurationCollection : ItemConfigurationCollection<QueueConfiguration>
 	{
 		private TraceSource traceSource;
@@ -34,7 +33,7 @@ namespace Company.MicrosoftServiceBus.Setup
 
 			var tasks = new List<Task>();
 
-			foreach (var config in this.Where(item => item.CreateMode == ItemCreateMode.CreateOrUpdate))
+			foreach (var config in this.Where(item => item.CreateMode == ItemCreateMode.CreateIfNotExists))
 			{
 				tasks.Add(
 					retryPolicy.ExecuteAsync(

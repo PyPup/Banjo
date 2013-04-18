@@ -1,23 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Company.MicrosoftServiceBus.Setup.Configuration
+﻿namespace Company.MicrosoftServiceBus.Setup.Configuration
 {
+	using System.Configuration;
+
 	public class TopicConfigurationElement : ConfigurationElement
 	{
-		private static class PropertyNames
-		{
-			public const string Path = "path";
-
-			public const string Create = "create";
-
-			public const string Subscriptions = "subscriptions";
-		}
-
 		public TopicConfigurationElement()
 		{
 		}
@@ -62,6 +48,15 @@ namespace Company.MicrosoftServiceBus.Setup.Configuration
 			{
 				this[PropertyNames.Subscriptions] = value;
 			}
+		}
+
+		private static class PropertyNames
+		{
+			public const string Path = "path";
+
+			public const string Create = "create";
+
+			public const string Subscriptions = "subscriptions";
 		}
 	}
 }

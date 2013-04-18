@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Practices.EnterpriseLibrary.WindowsAzure.TransientFaultHandling.ServiceBus;
-using Microsoft.Practices.TransientFaultHandling;
-using Microsoft.ServiceBus;
-using Microsoft.ServiceBus.Messaging;
-
-namespace Company.MicrosoftServiceBus.Setup
+﻿namespace Company.MicrosoftServiceBus.Setup
 {
+	using System;
+	using System.Diagnostics;
+	using System.Threading.Tasks;
+	using Microsoft.Practices.EnterpriseLibrary.WindowsAzure.TransientFaultHandling.ServiceBus;
+	using Microsoft.Practices.TransientFaultHandling;
+	using Microsoft.ServiceBus;
+
 	/// <summary>
 	/// Represents a set of configuration for a Service Bus namespace.
 	/// </summary>
 	public class ServiceBusConfiguration
 	{
-		private TraceSource traceSource;
-
 		internal const string TraceSourceName = "Company.MicrosoftServiceBus.Setup";
+
+		private TraceSource traceSource;
 
 		public ServiceBusConfiguration()
 		{
