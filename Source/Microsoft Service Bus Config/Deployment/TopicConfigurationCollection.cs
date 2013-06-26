@@ -1,4 +1,4 @@
-﻿namespace Company.MicrosoftServiceBus.Setup
+﻿namespace PyPup.ServiceBus.Deployment
 {
 	using System;
 	using System.Collections.Generic;
@@ -15,7 +15,7 @@
 
 		public TopicConfigurationCollection()
 		{
-			this.traceSource = new TraceSource(ServiceBusConfiguration.TraceSourceName);
+			this.traceSource = new TraceSource(MessagingDescription.TraceSourceName);
 		}
 
 		public bool RemoveTopicsNotInConfiguration { get; set; }

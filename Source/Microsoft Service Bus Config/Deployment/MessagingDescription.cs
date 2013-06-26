@@ -1,4 +1,4 @@
-﻿namespace Company.MicrosoftServiceBus.Setup
+﻿namespace PyPup.ServiceBus.Deployment
 {
 	using System;
 	using System.Diagnostics;
@@ -8,21 +8,16 @@
 	using Microsoft.ServiceBus;
 
 	/// <summary>
-	/// Represents a set of configuration for a Service Bus namespace.
+	/// Provides a description of the messaging components in a service bus namespace.
 	/// </summary>
-	public class ServiceBusConfiguration
+	public class MessagingDescription
 	{
-		internal const string TraceSourceName = "Company.MicrosoftServiceBus.Setup";
 
-		private TraceSource traceSource;
-
-		public ServiceBusConfiguration()
+		public MessagingDescription()
 		{
 			this.Queues = new QueueConfigurationCollection();
 			this.Topics = new TopicConfigurationCollection();
 			this.Subscriptions = new SubscriptionConfigurationCollection();
-
-			this.traceSource = new TraceSource(ServiceBusConfiguration.TraceSourceName);
 		}
 
 		public QueueConfigurationCollection Queues { get; private set; }

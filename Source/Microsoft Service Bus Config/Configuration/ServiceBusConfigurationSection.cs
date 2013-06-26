@@ -1,4 +1,4 @@
-﻿namespace Company.MicrosoftServiceBus.Setup.Configuration
+﻿namespace PyPup.ServiceBus.Deployment.Configuration
 {
 	using System.Configuration;
 

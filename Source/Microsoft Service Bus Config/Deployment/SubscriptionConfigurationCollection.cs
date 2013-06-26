@@ -1,4 +1,4 @@
-﻿namespace Company.MicrosoftServiceBus.Setup
+﻿namespace PyPup.ServiceBus.Deployment
 {
 	using System;
 	using System.Collections.Generic;
@@ -14,7 +14,7 @@
 
 		public SubscriptionConfigurationCollection()
 		{
-			this.traceSource = new TraceSource(ServiceBusConfiguration.TraceSourceName);
+			this.traceSource = new TraceSource(MessagingDescription.TraceSourceName);
 		}
 
 		public bool RemoveSubscriptionsNotInConfiguration { get; set; }

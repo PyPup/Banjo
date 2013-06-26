@@ -1,10 +1,13 @@
-﻿namespace Company.MicrosoftServiceBus.Setup
+﻿namespace PyPup.ServiceBus
 {
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using Microsoft.ServiceBus;
 	using Microsoft.ServiceBus.Messaging;
 
+	/// <summary>
+	/// Provides extensions to the <see cref="NamespaceManager"/> class.
+	/// </summary>
 	internal static class NamespaceManagerExtensions
 	{
 		public static Task<bool> QueueExistsAsync(this NamespaceManager namespaceManager, string path)

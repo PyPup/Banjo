@@ -7,12 +7,13 @@
     <ProjectGuid>{5888F75A-2FA9-4B12-A67A-0EA428096A3A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Company.MicrosoftServiceBus.Setup</RootNamespace>
-    <AssemblyName>Company.MicrosoftServiceBus.Setup</AssemblyName>
+    <RootNamespace>PyPup.ServiceBus</RootNamespace>
+    <AssemblyName>PyPup.ServiceBus</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <LocalBuildDir>..\..\Build\</LocalBuildDir>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -73,43 +74,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ItemConfigurationCollection.cs" />
-    <Compile Include="Configuration\ConfigurationElementCollection.cs" />
-    <Compile Include="Configuration\SubscriptionConfigurationElementCollection.cs" />
-    <Compile Include="Configuration\TopicConfigurationElementCollection.cs" />
-    <Compile Include="Configuration\QueueConfigurationElement.cs" />
-    <Compile Include="Configuration\QueueConfigurationElementCollection.cs" />
-    <Compile Include="Configuration\ServiceBusConfigurationSection.cs" />
-    <Compile Include="Configuration\SubscriptionConfigurationElement.cs" />
-    <Compile Include="Configuration\TopicConfigurationElement.cs" />
-    <Compile Include="ItemCreateMode.cs" />
-    <Compile Include="ItemConfiguration.cs" />
+    <Compile Include="Messaging\BrokeredMessagingService.cs" />
+    <Compile Include="Messaging\CommandAttribute.cs" />
+    <Compile Include="Messaging\CommandProcessorHost.cs" />
+    <Compile Include="Messaging\CommandReceiver.cs" />
+    <Compile Include="Messaging\IBrokeredMessagingService.cs" />
+    <Compile Include="Messaging\QueueClientExtensions.cs" />
     <Compile Include="NamespaceManagerExtensions.cs" />
+    <Compile Include="Messaging\EventAttribute.cs" />
+    <Compile Include="Messaging\ICommandAsyncProcessor.cs" />
+    <Compile Include="Messaging\ICommandProcessor.cs" />
+    <Compile Include="Messaging\IEventAsyncHandler.cs" />
+    <Compile Include="Messaging\IEventHandler.cs" />
+    <Compile Include="Messaging\Messages\EndSession.cs" />
+    <Compile Include="Messaging\Messages\StartSession.cs" />
+    <Compile Include="Messaging\SequenceNumberAttribute.cs" />
+    <Compile Include="Messaging\SessionIdAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueueConfiguration.cs" />
-    <Compile Include="QueueConfigurationCollection.cs" />
-    <Compile Include="ServiceBusConfiguration.cs" />
-    <Compile Include="SubscriptionConfiguration.cs" />
-    <Compile Include="SubscriptionConfigurationCollection.cs" />
-    <Compile Include="TopicConfiguration.cs" />
-    <Compile Include="TopicConfigurationCollection.cs" />
-    <Compile Include="TraceMessages.Designer.cs">
-      <DependentUpon>TraceMessages.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <Compile Include="Messaging\CommandBroker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TraceMessages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>TraceMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(LocalBuildDir)Project.Common.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

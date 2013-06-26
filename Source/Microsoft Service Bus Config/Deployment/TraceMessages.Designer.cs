@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Company.MicrosoftServiceBus.Setup {
+namespace PyPup.ServiceBus.Deployment {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Company.MicrosoftServiceBus.Setup {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Company.MicrosoftServiceBus.Setup.TraceMessages", typeof(TraceMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PyPup.ServiceBus.Deployment.TraceMessages", typeof(TraceMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

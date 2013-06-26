@@ -1,4 +1,4 @@
-﻿namespace Company.MicrosoftServiceBus.Setup
+﻿namespace PyPup.ServiceBus.Deployment
 {
 	using Microsoft.ServiceBus.Messaging;
 
